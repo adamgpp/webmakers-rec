@@ -23,11 +23,11 @@ final class Invoice
     #[ORM\Column]
     private string $uniqueNumber;
 
-    #[ORM\Column(enumType: PaymentStatusEnum::class)]
-    private PaymentStatusEnum $paymentStatus;
+    #[ORM\Column(type: 'datetime_immutable')]
+    private ?\DateTimeImmutable $paidAt = null;
 
     #[ORM\Column(type: 'datetime_immutable')]
-    private ?\DateTimeImmutable $paymentDate = null;
+    private \DateTimeImmutable $paymentDueDate;
 
     #[ORM\Column]
     private int $amount;
@@ -49,15 +49,16 @@ final class Invoice
         Ulid $id,
         BaseString $uniqueNumber,
         Amount $price,
-        \DateTimeImmutable $createdAt,
+        \DateTimeImmutable $paymentDueDate,
         Contractor $contractor,
+        \DateTimeImmutable $createdAt,
     ) {
         $this->id = $id;
         $this->uniqueNumber = (string) $uniqueNumber;
         $this->amount = $price->value;
-        $this->paymentStatus = PaymentStatusEnum::AWAITING;
+        $this->paymentDueDate = $paymentDueDate;
+        $this->contractor = $contractor;
         $this->createdAt = $createdAt;
         $this->updatedAt = $createdAt;
-        $this->contractor = $contractor;
     }
 }

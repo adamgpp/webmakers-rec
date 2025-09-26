@@ -9,7 +9,7 @@ use Symfony\Component\Uid\Ulid;
 interface WarningGenerationInterface
 {
     public function generate(
-        Ulid $warningSubjectId,
         \DateTimeImmutable $generatedAt,
+        Ulid ...$warningSubjectIds,
     ): void;
 }

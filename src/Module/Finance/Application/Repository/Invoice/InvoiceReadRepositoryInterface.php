@@ -11,5 +11,5 @@ interface InvoiceReadRepositoryInterface
     /**
      * @return list<Ulid>
      */
-    public function findOverdueInvoices(): array;
+    public function findOverdueInvoiceIds(\DateTimeImmutable $paymentDueDate): array;
 }

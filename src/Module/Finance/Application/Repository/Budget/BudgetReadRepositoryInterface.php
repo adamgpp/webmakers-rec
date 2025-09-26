@@ -11,5 +11,5 @@ interface BudgetReadRepositoryInterface
     /**
      * @return list<Ulid>
      */
-    public function findNegativeBudgets(): array;
+    public function findNegativeBudgetIds(): array;
 }

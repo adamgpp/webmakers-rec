@@ -12,5 +12,5 @@ interface ContractorReadRepositoryInterface
     /**
      * @return list<Ulid>
      */
-    public function findContractorsWithDebtGreaterThan(Amount $debt): array;
+    public function findContractorIdsWithDebtGreaterThan(Amount $debt, \DateTimeImmutable $paymentDueDate): array;
 }
