@@ -1,0 +1,19 @@
+parameters:
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    App\:
+        resource: '../src/'
+        exclude:
+            - '../src/DependencyInjection/'
+            - '../src/Module/*/Domain/Entity/'
+            - '../src/Kernel.php'
+
+    App\Module\Core\Presentation\Cli\GenerateWarningsCommand:
+      arguments:
+        $contractorsWithDebtWarningGenerator: '@App\Module\Finance\Domain\Service\Contractor\ContractorsWithDebtWarningGenerator'
+        $overdueInvoicesWarningGenerator: '@App\Module\Finance\Domain\Service\Invoice\OverdueInvoicesWarningGenerator'
+        $negativeBudgetWarningGenerator: '@App\Module\Finance\Domain\Service\Budget\NegativeBudgetWarningGenerator'
