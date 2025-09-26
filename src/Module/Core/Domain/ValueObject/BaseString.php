@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Modules\Core\Domain\ValueObject;
+namespace App\Module\Core\Domain\ValueObject;
 
-use App\Modules\Core\Domain\ValueObject\Exception\ValueValidationException;
+use App\Module\Core\Domain\ValueObject\Exception\ValueValidationException;
 
 final readonly class BaseString implements \Stringable
 {
-    private const int MIN_LENGTH = 1;
-    private const int MAX_LENGTH = 255;
+    private const MIN_LENGTH = 1;
+    private const MAX_LENGTH = 255;
 
     public function __construct(public string $value)
     {

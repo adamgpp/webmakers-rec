@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Module\Finance\Domain\ValueObject;
 
-use App\Modules\Core\Domain\ValueObject\Exception\ValueValidationException;
+use App\Module\Core\Domain\ValueObject\Exception\ValueValidationException;
 
 final readonly class Amount
 {

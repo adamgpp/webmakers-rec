@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Module\Finance\Domain\Entity;
 
+use App\Module\Core\Domain\ValueObject\BaseString;
 use App\Module\Finance\Domain\ValueObject\Amount;
-use App\Modules\Core\Domain\ValueObject\BaseString;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Uid\Ulid;
 
@@ -23,7 +23,7 @@ final class Invoice
     #[ORM\Column]
     private string $uniqueNumber;
 
-    #[ORM\Column(type: 'datetime_immutable')]
+    #[ORM\Column(type: 'datetime_immutable', nullable: true)]
     private ?\DateTimeImmutable $paidAt = null;
 
     #[ORM\Column(type: 'datetime_immutable')]
@@ -38,7 +38,7 @@ final class Invoice
     #[ORM\Column(type: 'datetime_immutable')]
     private \DateTimeImmutable $updatedAt;
 
-    #[ORM\Column(type: 'datetime_immutable')]
+    #[ORM\Column(type: 'datetime_immutable', nullable: true)]
     private ?\DateTimeImmutable $deletedAt = null;
 
     #[ORM\ManyToOne(targetEntity: Contractor::class, inversedBy: 'invoices')]
@@ -48,17 +48,28 @@ final class Invoice
     public function __construct(
         Ulid $id,
         BaseString $uniqueNumber,
-        Amount $price,
+        Amount $amount,
         \DateTimeImmutable $paymentDueDate,
         Contractor $contractor,
         \DateTimeImmutable $createdAt,
     ) {
         $this->id = $id;
         $this->uniqueNumber = (string) $uniqueNumber;
-        $this->amount = $price->value;
+        $this->amount = $amount->value;
         $this->paymentDueDate = $paymentDueDate;
         $this->contractor = $contractor;
         $this->createdAt = $createdAt;
         $this->updatedAt = $createdAt;
+    }
+
+    public function getId(): Ulid
+    {
+        return $this->id;
+    }
+
+    public function pay(\DateTimeImmutable $doneAt): void
+    {
+        $this->paidAt = $doneAt;
+        $this->updatedAt = $doneAt;
     }
 }

@@ -3,10 +3,9 @@
 ## Requirements
 
 To run this project, make sure you have the following tools installed on your system:
-- **PHP** version 8.3 or higher
+- **PHP** version 8.2 or higher
 - **Composer**
 - **MySQL** version 8
-- **Symfony CLI** (optional, for running the local server)
 
 ---
 
@@ -41,7 +40,6 @@ Update the values according to your local setup.
 ### 1. Prepare database
 Create the database schema:  
 ```bash
-php bin/console doctrine:schema:create
 php bin/console doctrine:schema:create --env=test
 ```
 ---

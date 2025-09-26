@@ -31,7 +31,7 @@ final class Contractor
     #[ORM\Column(type: 'datetime_immutable')]
     private \DateTimeImmutable $updatedAt;
 
-    #[ORM\Column(type: 'datetime_immutable')]
+    #[ORM\Column(type: 'datetime_immutable', nullable: true)]
     private ?\DateTimeImmutable $deletedAt = null;
 
     public function __construct(
@@ -48,10 +48,5 @@ final class Contractor
     public function getId(): Ulid
     {
         return $this->id;
-    }
-
-    public function getInvoices(): array
-    {
-        return $this->invoices->toArray();
     }
 }

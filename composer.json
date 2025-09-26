@@ -4,16 +4,16 @@
     "minimum-stability": "stable",
     "prefer-stable": true,
     "require": {
-        "php": ">=8.3",
+        "php": ">=8.2",
         "ext-ctype": "*",
         "ext-iconv": "*",
-        "doctrine/dbal": "^3.9.4",
-        "doctrine/doctrine-bundle": "^2.14.0",
+        "doctrine/dbal": "^3.10.2",
+        "doctrine/doctrine-bundle": "^2.16.2",
         "doctrine/doctrine-migrations-bundle": "^3.4.2",
-        "doctrine/orm": "^3.3.3",
+        "doctrine/orm": "^3.5.2",
         "symfony/console": "7.2.*",
         "symfony/dotenv": "7.2.*",
-        "symfony/flex": "^2.5.0",
+        "symfony/flex": "^2.8.2",
         "symfony/framework-bundle": "7.2.*",
         "symfony/messenger": "7.2.*",
         "symfony/runtime": "7.2.*",
@@ -60,8 +60,7 @@
         "post-update-cmd": [
             "@auto-scripts"
         ],
-        "fix": "./vendor/bin/php-cs-fixer fix src",
-        "phpstan": "./vendor/bin/phpstan analyse -c phpstan.dist.neon"
+        "fix": "PHP_CS_FIXER_IGNORE_ENV=1 ./vendor/bin/php-cs-fixer fix src"
     },
     "conflict": {
         "symfony/symfony": "*"
@@ -74,11 +73,10 @@
     },
     "require-dev": {
         "dama/doctrine-test-bundle": "^8.2.2",
-        "friendsofphp/php-cs-fixer": "^3.75",
-        "phpstan/phpstan": "^2.1.14",
-        "phpunit/phpunit": "^9.6.23",
+        "friendsofphp/php-cs-fixer": "^3.88",
+        "phpunit/phpunit": "^9.6.29",
         "symfony/browser-kit": "7.2.*",
         "symfony/css-selector": "7.2.*",
-        "symfony/phpunit-bridge": "^7.2.6"
+        "symfony/phpunit-bridge": "^7.3.3"
     }
 }
